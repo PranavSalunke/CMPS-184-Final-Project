@@ -21,6 +21,8 @@ https://datacatalog.worldbank.org/dataset/population-estimates-and-projections <
 https://www.photius.com/rankings/world2050_rank.html (not many years, but easy to scrape data)
 http://media.wix.com/ugd/672989_62cfa13ec4ba47788f78ad660489a2fa.pdf (page 11)
 
+https://en.wikipedia.org/wiki/World_population_estimates <--- estimates for long ago 
+
    
 
 === URBANIZATION == 
