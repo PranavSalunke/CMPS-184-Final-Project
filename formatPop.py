@@ -45,14 +45,11 @@ with open(ORIG_DATA, "r") as origdata:
 
     # read in all the other lines
     for line in origReader:
-        # set the currents the first time
+        # print(line)
 
+        # set tracking vars
         lineLoc = line[1]
         lineVar = line[3]
-        maleData.append(line[6])
-        femaleData.append(line[7])
-        totalData.append(line[8])
-        # print(line)
 
         if lineVar != currVar:  # new variant, want to make new file
             # the way the orig data is done, if the variant changes, so does the location
@@ -69,15 +66,14 @@ with open(ORIG_DATA, "r") as origdata:
             currLoc = line[1]
             currVar = line[3]
 
-            # add this line to the new tracking variables
-            maleData = [line[6]]
-            femaleData = [line[7]]
-            totalData = [line[8]]
+            # clear the data lists (this line will be added below)
+            maleData.clear()
+            femaleData.clear()
+            totalData.clear()
 
             print("New variant: %s" % (var))
 
         if lineLoc != currLoc:  # new location
-
             rows = []
             # remember new header: ["Location", "Variant", "Group", 1959, ..., 2100]
             # male data
@@ -104,6 +100,12 @@ with open(ORIG_DATA, "r") as origdata:
             currLoc = line[1]
 
             # and reset data lists
-            maleData = []
-            femaleData = []
-            totalData = []
+            maleData.clear()
+            femaleData.clear()
+            totalData.clear()
+
+        # add the populations to the data list
+        # will be empty if needed (ie. new variant or new location)
+        maleData.append(line[6])
+        femaleData.append(line[7])
+        totalData.append(line[8])
