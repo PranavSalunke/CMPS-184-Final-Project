@@ -1,5 +1,6 @@
 import pandas
 import re
+import matplotlib.pyplot as plt
 
 # the top locations that make up targetPercent of the worlds population for the given year
 # data taken from the given file (assumed to be the output of the reformated population data)
@@ -35,6 +36,7 @@ countriesDF = pandas.DataFrame(data={"countries": countries})
 # make a common dataframe that has only countries and removes non-countries, dropping na values
 common = countriesDF.merge(yearTotals, how='inner', left_on=['countries'], right_on=['Location'])
 yearTotals = common.dropna()
+yearTotals = yearTotals.drop(columns=["countries"])  # drop countries since same as location
 # print(yearTotals)
 # print(common)
 # common = common.drop(['Location'], axis=1)
@@ -65,3 +67,13 @@ for index, series in yearTotals.iterrows():
 # create data frame using the indexes from above (top locations using the cumulative sum)
 topCumLocations = yearTotals.loc[topIndexes]
 print(topCumLocations)
+
+
+# find the cumulative sums
+yearTotals["CumPercent"] = yearTotals["Percent"].cumsum()
+# print(yearTotals)
+
+# graph the cumulative sum
+plt.xticks(rotation=90)
+plt.plot(yearTotals["Location"], yearTotals["CumPercent"])
+plt.show()
