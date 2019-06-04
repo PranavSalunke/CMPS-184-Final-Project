@@ -38,22 +38,31 @@ def getPop(variant, country_name, group="Total"):
 
     return (variant, country_name, group), (headers, pops)
 
+
 variants = ["ConstantFertility", "ConstantMortality", "High", "InstantReplacement", "Low", "Medium", "Momentum", "NoChange", "ZeroMigration"]
-country = "United States of America"
+# country = "China"
+# country = "India"
+# country = "United States of America"
+country = "Nigeria"
+
+
+xtix = None
+fig, axs = plt.subplots(1, 1)
 for v in variants:
-   gmeta, gdata = getPop(v, country)
-   plt.plot(gdata[0],gdata[1],label=v)
+    gmeta, gdata = getPop(v, country)
+    axs.plot(gdata[0], gdata[1], label=v)
 
-#gmeta, gdata = getPop("Medium", country)
-#p = createFig(gmeta, gdata)
-#p.show()
-#plt.plot(gdata[0],gdata[1], label="M")
-gmeta, gdata = getPop("High", country)
-#p = createFig(gmeta, gdata, p)
-#p.show()
-#plt.plot(gdata[0],gdata[1],label="H")
+    if xtix is None:
+        xtix = [t for t in gdata[0] if int(t) % 5 == 0]
 
-#gmeta, gdata = getPop("NoChange", country)
-#plt.plot(gdata[0],gdata[1],label="N")
-plt.legend()
+
+# Shrink current axis by 20%
+box = axs.get_position()
+axs.set_position([box.x0, box.y0, box.width * 0.8, box.height])
+# Put a legend to the right of the current axis
+axs.legend(loc='center left', bbox_to_anchor=(1, 0.5), prop={"size": 7})
+
+axs.set_xticks(xtix)
+plt.title("Population for %s with all variants" % (country))
+plt.xticks(rotation=90)
 plt.show()
