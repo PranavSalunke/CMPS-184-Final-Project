@@ -3,25 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def createFig(graphMeta, graphData, plot=None):
-    variant, country_name, group = graphMeta  # unpack the tuple
-    headers, pops = graphData
-    if plot is None:
-        plot = plt
-    # create a new plot with a datetime axis type
-    # p = figure(plot_width=800, plot_height=250, title="%s %s %s" % (variant, country_name, group))
-
-    # # make a line graph with the x-axis = header, y = pops, color of the lineis navy, and transparency is 0.5
-    # p.line(headers, pops, color='navy', alpha=0.5)
-    # p.xaxis.axis_label = "Year"
-    # p.yaxis.axis_label = "Population in thousands"
-
-    # show(p)
-
-    plot.scatter(headers, pops)
-    return plot
-
-
 def getPop(variant, country_name, group="Total"):
 
     filename = "data/TotalPopulation_%s.csv" % (variant)
@@ -39,22 +20,30 @@ def getPop(variant, country_name, group="Total"):
     return (variant, country_name, group), (headers, pops)
 
 
-variants = ["ConstantFertility", "ConstantMortality", "High", "InstantReplacement", "Low", "Medium", "Momentum", "NoChange", "ZeroMigration"]
-# country = "China"
-# country = "India"
-# country = "United States of America"
-country = "Nigeria"
+# variants = ["ConstantFertility", "ConstantMortality", "High", "InstantReplacement", "Low", "Medium", "Momentum", "NoChange", "ZeroMigration"]
+variants = ["Low", "Medium", "High"]
+# top 61% from 2020
 
+countries = ["China", "United States of America", "Indonesia", "Brazil", "Pakistan",
+             "Bangladesh", "Russian Federation", "Mexico", "Japan", "Ethiopia", "Nigeria", "India"]
+country = countries[2]
 
 xtix = None
 fig, axs = plt.subplots(1, 1)
+firstGraphData = None  # used to shade between the first line drawn and last line drawn
+lastGraphData = None
 for v in variants:
     gmeta, gdata = getPop(v, country)
     axs.plot(gdata[0], gdata[1], label=v)
 
+    lastGraphData = gdata  # set every time
+    if firstGraphData is None:
+        firstGraphData = gdata  # set only once
     if xtix is None:
         xtix = [t for t in gdata[0] if int(t) % 5 == 0]
 
+# shade between the first line drawn and last line drawn
+axs.fill_between(firstGraphData[0], firstGraphData[1], lastGraphData[1], alpha=0.3, color="#e0a05f")
 
 # Shrink current axis by 20%
 box = axs.get_position()
