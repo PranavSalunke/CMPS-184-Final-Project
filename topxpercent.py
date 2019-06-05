@@ -71,10 +71,11 @@ variant = "Medium"  # can be:
 #  "ConstantFertility" "ConstantMortality" "High" "InstantReplacement" "Low" "Medium" "Momentum" "NoChange" "ZeroMigration"
 
 year = "2020"
-targetPercent = 0.5  # 0 to 1
+targetPercent = 0.61  # 0 to 1
 
 # returns top Locations as well as cumulative percentage
 cumulativeTotals, topLocations = findTopXPercent(variant, year, targetPercent)
 
 # graph the cumulative sum (does not depend on targetPercent)
-graphCumulative(cumulativeTotals)
+# graphCumulative(cumulativeTotals)
+graphCumulative(topLocations)  # plot only the topLocations
