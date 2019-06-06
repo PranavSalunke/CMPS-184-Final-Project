@@ -8,19 +8,19 @@ ORIG_DATA = "data/WPP2017_TotalPopulationBySex.csv"
 
 # helper function to write the three rows per location
 def writeLocRows(filename, trackingVars, data):
-    currLoc, currVar = trackingVars
+    currLocID,currLoc, currVar = trackingVars
     maleData, femaleData, totalData = data
 
     rows = []
-    # remember new header: ["Location", "Variant", "Group", 1959, ..., 2100]
+    # remember new header: ["LocationID","Location", "Variant", "Group", 1959, ..., 2100]
     # male data
-    maleRow = [currLoc, currVar, "Male"] + maleData
+    maleRow = [currLocID,currLoc, currVar, "Male"] + maleData
     rows.append(maleRow)
     # female data
-    femaleRow = [currLoc, currVar, "Female"] + femaleData
+    femaleRow = [currLocID,currLoc, currVar, "Female"] + femaleData
     rows.append(femaleRow)
     # total data
-    totalRow = [currLoc, currVar, "Total"] + totalData
+    totalRow = [currLocID,currLoc, currVar, "Total"] + totalData
     rows.append(totalRow)
 
     # print(maleRow)
@@ -43,7 +43,7 @@ with open(ORIG_DATA, "r") as origdata:
     # print(header)
 
     # Group is Male, Female, or Total
-    newHeader = ["Location", "Variant", "Group"]
+    newHeader = ["LocationID","Location", "Variant", "Group"]
     # create years
     for y in range(1950, 2101):  # data has year range 1950-2100
         newHeader.append(y)
@@ -52,6 +52,7 @@ with open(ORIG_DATA, "r") as origdata:
     # read first line and set initial values for tracking variables
     firstLine = next(origReader)
     # tracking variables
+    currLocID = firstLine[0]
     currLoc = firstLine[1]
     currVar = firstLine[3]
     var = firstLine[3].title().replace(" ", "")  # make "Hello world"  to "HelloWorld"
@@ -76,17 +77,19 @@ with open(ORIG_DATA, "r") as origdata:
         # print(line)
 
         # set tracking vars
+        lineLocID = line[0]
         lineLoc = line[1]
         lineVar = line[3]
 
         if lineLoc != currLoc:  # new location
 
             # write location data
-            trackingVars = (currLoc, currVar)
+            trackingVars = (currLocID,currLoc, currVar)
             data = (maleData, femaleData, totalData)
             writeLocRows(currFileName, trackingVars, data)
 
             # reset tracker for location
+            currLocID = lineLocID
             currLoc = lineLoc
 
             # and reset data lists
@@ -121,6 +124,6 @@ with open(ORIG_DATA, "r") as origdata:
         totalData.append(line[8])
 
     # write the stuff that hasnt been written yet ()
-    trackingVars = (currLoc, currVar)
+    trackingVars = (currLocID,currLoc, currVar)
     data = (maleData, femaleData, totalData)
     writeLocRows(currFileName, trackingVars, data)
