@@ -169,7 +169,7 @@ Norway,NO,NOR,578,ISO 3166-2:NO,Europe,Northern Europe,"",150,154,""
 Oman,OM,OMN,512,ISO 3166-2:OM,Asia,Western Asia,"",142,145,""
 Pakistan,PK,PAK,586,ISO 3166-2:PK,Asia,Southern Asia,"",142,034,""
 Palau,PW,PLW,585,ISO 3166-2:PW,Oceania,Micronesia,"",009,057,""
-"Palestine, State of",PS,PSE,275,ISO 3166-2:PS,Asia,Western Asia,"",142,145,""
+"Palestine, State of",PS,PSX,275,ISO 3166-2:PS,Asia,Western Asia,"",142,145,""
 Panama,PA,PAN,591,ISO 3166-2:PA,Americas,Latin America and the Caribbean,Central America,019,419,013
 Papua New Guinea,PG,PNG,598,ISO 3166-2:PG,Oceania,Melanesia,"",009,054,""
 Paraguay,PY,PRY,600,ISO 3166-2:PY,Americas,Latin America and the Caribbean,South America,019,419,005
@@ -204,10 +204,10 @@ Sint Maarten (Dutch part),SX,SXM,534,ISO 3166-2:SX,Americas,Latin America and th
 Slovakia,SK,SVK,703,ISO 3166-2:SK,Europe,Eastern Europe,"",150,151,""
 Slovenia,SI,SVN,705,ISO 3166-2:SI,Europe,Southern Europe,"",150,039,""
 Solomon Islands,SB,SLB,090,ISO 3166-2:SB,Oceania,Melanesia,"",009,054,""
-Somalia,SO,SOM,706,ISO 3166-2:SO,Africa,Sub-Saharan Africa,Eastern Africa,002,202,014
+Somalia,SO,SOL,706,ISO 3166-2:SO,Africa,Sub-Saharan Africa,Eastern Africa,002,202,014
 South Africa,ZA,ZAF,710,ISO 3166-2:ZA,Africa,Sub-Saharan Africa,Southern Africa,002,202,018
 South Georgia and the South Sandwich Islands,GS,SGS,239,ISO 3166-2:GS,Americas,Latin America and the Caribbean,South America,019,419,005
-South Sudan,SS,SSD,728,ISO 3166-2:SS,Africa,Sub-Saharan Africa,Eastern Africa,002,202,014
+South Sudan,SS,SDS,728,ISO 3166-2:SS,Africa,Sub-Saharan Africa,Eastern Africa,002,202,014
 Spain,ES,ESP,724,ISO 3166-2:ES,Europe,Southern Europe,"",150,039,""
 Sri Lanka,LK,LKA,144,ISO 3166-2:LK,Asia,Southern Asia,"",142,034,""
 Sudan,SD,SDN,729,ISO 3166-2:SD,Africa,Northern Africa,"",002,015,""
@@ -244,7 +244,7 @@ Viet Nam,VN,VNM,704,ISO 3166-2:VN,Asia,South-eastern Asia,"",142,035,""
 Virgin Islands (British),VG,VGB,092,ISO 3166-2:VG,Americas,Latin America and the Caribbean,Caribbean,019,419,029
 Virgin Islands (U.S.),VI,VIR,850,ISO 3166-2:VI,Americas,Latin America and the Caribbean,Caribbean,019,419,029
 Wallis and Futuna,WF,WLF,876,ISO 3166-2:WF,Oceania,Polynesia,"",009,061,""
-Western Sahara,EH,ESH,732,ISO 3166-2:EH,Africa,Northern Africa,"",002,015,""
+Western Sahara,EH,SAH,732,ISO 3166-2:EH,Africa,Northern Africa,"",002,015,""
 Yemen,YE,YEM,887,ISO 3166-2:YE,Asia,Western Asia,"",142,145,""
 Zambia,ZM,ZMB,894,ISO 3166-2:ZM,Africa,Sub-Saharan Africa,Eastern Africa,002,202,014
 Zimbabwe,ZW,ZWE,716,ISO 3166-2:ZW,Africa,Sub-Saharan Africa,Eastern Africa,002,202,014
