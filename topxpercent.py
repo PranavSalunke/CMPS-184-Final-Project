@@ -19,8 +19,8 @@ def findTopXPercent(variant, year, targetPercent):
     popDF = pandas.read_csv(fileName)
 
     # extract the totals per country from the data
-    yearData = popDF[["Location", "Group", year]]
-    yearTotals = yearData.loc[yearData["Group"] == "Total"][["Location", year]]
+    yearData = popDF[["LocationID","Location", "Group", year]]
+    yearTotals = yearData.loc[yearData["Group"] == "Total"]
     # ^ a DF with the location and its total population for the year given
 
     # extract the world's total population for the year
