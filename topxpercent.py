@@ -80,10 +80,7 @@ cumulativeTotals.drop(['Group'],axis=1,inplace=True)
 
 #exporting dataframe to intermediate data folder
 newfile = "intermediate-data/Medium-TotalPop-CountID%s.csv" % (year)
-export_csv = cumulativeTotals.to_csv(newfile, index = None, header=True)  #Don't forget to add '.csv' at the end of the path
-
-print(cumulativeTotals)
-
+#export_csv = cumulativeTotals.to_csv(newfile, index = None, header=True)  #Don't forget to add '.csv' at the end of the path
 
 # graph the cumulative sum (does not depend on targetPercent)
 # graphCumulative(cumulativeTotals)

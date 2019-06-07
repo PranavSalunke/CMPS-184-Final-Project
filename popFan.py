@@ -9,7 +9,7 @@ def getPop(variant, country_name, group="Total"):
 
     cf = pd.read_csv(filename)
     # Get the headers with the years
-    headers = list(cf.columns.values)[3:]
+    headers = list(cf.columns.values)[4:]
     # choose your country
     country = cf.loc[cf["Location"] == country_name]
     # choose the "total" row, extracting the years and making it into a list
