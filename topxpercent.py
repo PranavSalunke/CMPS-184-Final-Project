@@ -134,7 +134,6 @@ def createGif():
 
     print("\nDone creating images")
     # create the gif
-    # https://stackoverflow.com/questions/753190/programmatically-generate-video-or-animated-gif-in-python
     totalFiles = len(imagenames)
     imgnum = 0
     figures = []
@@ -149,7 +148,7 @@ def createGif():
     # remove images and temp folder
     if os.path.isdir("tempimages"):  # should always be true here
         shutil.rmtree("tempimages")
-    print("Images, temp foolder removed")
+    print("Images, temp folder removed")
 
 
 # findTop()
