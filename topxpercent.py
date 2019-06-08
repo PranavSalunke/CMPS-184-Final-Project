@@ -107,13 +107,13 @@ def createGif():
     variant = "Medium"  # can be:
     #  "ConstantFertility" "ConstantMortality" "High" "InstantReplacement" "Low" "Medium" "Momentum" "NoChange" "ZeroMigration"
 
-    # years = [str(y) for y in range(1950, 2101)]
-    years = [str(y) for y in range(2000, 2011)]
+    years = [str(y) for y in range(1950, 2101)]
+    # years = [str(y) for y in range(2000, 2021)]
     targetPercent = 0.61  # 0 to 1
     # returns top Locations as well as cumulative percentage
 
     imagenames = []
-    gifname = "top%dpercent.gif" % (int(targetPercent*100))  # makes 0.xx to xx%
+    gifname = "gifs/top%dpercent.gif" % (int(targetPercent*100))  # makes 0.xx to xx%
     for year in years:
         print("Variant: %s, year: %s" % (variant, year), end="\r")  # \r makes it stay on the same line
         cumulativeTotals, topLocations = findTopXPercent(variant, year, targetPercent)
