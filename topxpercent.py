@@ -3,6 +3,7 @@ import re
 import os
 import matplotlib.pyplot as plt
 import imageio
+import shutil
 
 # the top locations that make up targetPercent of the worlds population for the given year
 # data taken from the given file (assumed to be the output of the reformated population data)
@@ -112,6 +113,13 @@ def createGif():
     targetPercent = 0.61  # 0 to 1
     # returns top Locations as well as cumulative percentage
 
+    # crate temp folder
+    if not os.path.isdir("tempimages"):
+        os.mkdir("tempimages")
+
+    if not os.path.isdir("gifs"):
+        os.mkdir("gifs")
+
     imagenames = []
     gifname = "gifs/top%dpercent.gif" % (int(targetPercent*100))  # makes 0.xx to xx%
     for year in years:
@@ -125,7 +133,6 @@ def createGif():
         saveGraphCumulative(topLocations, imgname, metadata)
 
     print("\nDone creating images")
-
     # create the gif
     # https://stackoverflow.com/questions/753190/programmatically-generate-video-or-animated-gif-in-python
     totalFiles = len(imagenames)
@@ -135,10 +142,14 @@ def createGif():
         imgnum += 1
         print("processing %s  [%d/%d]" % (img, imgnum, totalFiles), end="\r")
         figures.append(imageio.imread(img))
-        # remove the image
-        os.remove(img)
-    print("\nImages removed and gif made at %s" % (gifname))
+
     imageio.mimsave(gifname, figures, duration=0.25)
+    print("gif made at % s" % (gifname))
+
+    # remove images and temp folder
+    if os.path.isdir("tempimages"):  # should always be true here
+        shutil.rmtree("tempimages")
+    print("Images, temp foolder removed")
 
 
 # findTop()
