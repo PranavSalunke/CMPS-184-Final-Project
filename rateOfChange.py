@@ -42,7 +42,8 @@ def saveGraph(filename, data, meta):
     plt.clf()
 
 
-variants = ["ConstantFertility", "ConstantMortality", "High", "InstantReplacement", "Low", "Medium", "Momentum", "NoChange", "ZeroMigration"]
+# ignore "ConstantFertility", "ConstantMortality"
+variants = ["High", "InstantReplacement", "Low", "Medium", "Momentum", "NoChange", "ZeroMigration"]
 contriesOfInterest = ["China", "United States of America", "Indonesia", "Brazil", "Pakistan",
                       "Bangladesh", "Russian Federation", "Mexico", "Japan", "Ethiopia", "Nigeria", "India"]
 # country = "China"
