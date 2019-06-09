@@ -25,9 +25,15 @@ def getPop(variant, country_name, group="Total"):
 def saveGraph(filename, data, meta):
     variant, country, group = meta
     pop, first, second, years = data
+    tendToZero = ""
+    lastx = 2  # get the last 2 numbers from second derivative
+    lastxavg = sum(second[-lastx:])/lastx
+
+    if abs(lastxavg) < 20:
+        tendToZero = " - tends to 0"
 
     plt.xticks(rotation=90)
-    plt.title("%s | %s, %s" % (variant, group, country))
+    plt.title("%s | %s, %s %s" % (variant, group, country, tendToZero))
     plt.plot(years[1:], first, label='first')
     plt.plot(years[2:], second, label='second')
     plt.plot(years, [0]*len(years), color="black", linestyle='dashed', linewidth="0.5", label="zero")
@@ -37,20 +43,24 @@ def saveGraph(filename, data, meta):
 
 
 variants = ["ConstantFertility", "ConstantMortality", "High", "InstantReplacement", "Low", "Medium", "Momentum", "NoChange", "ZeroMigration"]
-
-country = "China"
+contriesOfInterest = ["China", "United States of America", "Indonesia", "Brazil", "Pakistan",
+                      "Bangladesh", "Russian Federation", "Mexico", "Japan", "Ethiopia", "Nigeria", "India"]
+# country = "China"
 group = "Total"
-generalGifs.initFolders()
-imageNames = []
-for var in variants:
-    meta, (years, pop) = getPop(var, country, group)
+for country in contriesOfInterest:
+    generalGifs.initFolders()
+    print("making gif for %s" % (country))
+    imageNames = []
+    for var in variants:
+        meta, (years, pop) = getPop(var, country, group)
 
-    # get first derivative
-    first = diff(pop)
-    # get second derivative
-    second = diff(first)
-    filename = "tempimages/%s_%s_%s.png" % (group, country, var)
-    imageNames.append(filename)
-    saveGraph(filename, (pop, first, second, years), meta)
+        # get first derivative
+        first = diff(pop)
+        # get second derivative
+        second = diff(first)
+        countryFile = country.replace(" ", "")
+        filename = "tempimages/%s_%s_%s.png" % (group, countryFile, var)
+        imageNames.append(filename)
+        saveGraph(filename, (pop, first, second, years), meta)
 
-generalGifs.createGif(imageNames, "rateOfChange_%s_%s.gif" % (country, group), 1)
+    generalGifs.createGif(imageNames, "rateOfChange_%s_%s.gif" % (countryFile, group), 1)
