@@ -42,11 +42,61 @@ def saveGraph(filename, data, meta):
     plt.clf()
 
 
+def analyzeROC():
+    # only interested in Medium variant
+    variant = "Medium"
+    contriesOfInterest = ["China", "United States of America", "Indonesia", "Brazil", "Pakistan",
+                          "Bangladesh", "Russian Federation", "Mexico", "Japan", "Ethiopia", "Nigeria", "India"]
+
+    highestList1 = []
+    lowestList1 = []
+    highestList2 = []
+    lowestList2 = []
+
+    for country in contriesOfInterest:
+        meta, (years, pop) = getPop(variant, country)
+        # get first derivative
+        first = diff(pop)
+        # get second derivative
+        second = diff(first)
+
+        # create and add tuples
+        low1 = first.min()
+        low2 = second.min()
+        lowestList1.append((low1, country))
+        lowestList2.append((low2, country))
+
+        high1 = first.max()
+        high2 = second.max()
+        highestList1.append((high1, country))
+        highestList2.append((high2, country))
+
+        # print(country, low1, high1)
+        # print(country, low2, high2)
+
+    # sort the lists (accending order)
+    highestList1.sort()
+    lowestList1.sort()
+    highestList2.sort()
+    lowestList2.sort()
+
+    # get highest and lowest values
+    highest1, highest1country = highestList1[-1]
+    highest2, highest2country = highestList2[-1]
+    lowest1, lowest1country = lowestList1[0]
+    lowest2, lowest2country = lowestList2[0]
+
+    print("highest first derivative:   %s:  %d  ppl/yr" % (highest1country, highest1))
+    print("highest second derivative:  %s:  %d  ppl/yr^2" % (highest2country, highest2))
+    print("lowest first derivative:    %s:  %d  ppl/yr" % (lowest1country, lowest1))
+    print("lowest second derivative:   %s:  %d  ppl/yr^2" % (lowest2country, lowest2))
+
+
 # ignore "ConstantFertility", "ConstantMortality"
 variants = ["High", "InstantReplacement", "Low", "Medium", "Momentum", "NoChange", "ZeroMigration"]
 contriesOfInterest = ["China", "United States of America", "Indonesia", "Brazil", "Pakistan",
                       "Bangladesh", "Russian Federation", "Mexico", "Japan", "Ethiopia", "Nigeria", "India"]
-# country = "China"
+
 group = "Total"
 for country in contriesOfInterest:
     generalGifs.initFolders()
@@ -65,3 +115,6 @@ for country in contriesOfInterest:
         saveGraph(filename, (pop, first, second, years), meta)
 
     generalGifs.createGif(imageNames, "rateOfChange_%s_%s.gif" % (countryFile, group), 1)
+
+print("\n\nfind the most extreme values from our countries of interest")
+analyzeROC()
