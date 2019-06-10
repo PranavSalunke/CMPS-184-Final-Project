@@ -27,6 +27,10 @@ contriesOfInterest = ["China", "United States of America", "Indonesia", "Brazil"
                       "Bangladesh", "Russian Federation", "Mexico", "Japan", "Ethiopia", "Nigeria", "India"]
 # top 61% countries from 2020
 
+# make sure figs is a real directory
+if not os.path.isdir("figs"):
+    os.mkdir("figs")
+
 for country in contriesOfInterest:
     xtix = None
     fig, axs = plt.subplots(1, 1)
