@@ -1,6 +1,7 @@
 import pandas as pd
 # from bokeh.plotting import figure, output_file, show
 import matplotlib.pyplot as plt
+import os
 
 
 def getPop(variant, country_name, group="Total"):
@@ -24,7 +25,7 @@ def getPop(variant, country_name, group="Total"):
 variants = ["High", "InstantReplacement", "Low", "Medium", "Momentum", "NoChange", "ZeroMigration"]
 
 contriesOfInterest = ["China", "United States of America", "Indonesia", "Brazil", "Pakistan",
-                      "Bangladesh", "Russian Federation", "Mexico", "Japan", "Ethiopia", "Nigeria", "India"]
+                      "Bangladesh", "Russian Federation", "Mexico", "Japan", "Ethiopia", "Nigeria", "India", "World"]
 # top 61% countries from 2020
 
 # make sure figs is a real directory
