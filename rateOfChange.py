@@ -95,7 +95,7 @@ def analyzeROC():
 # ignore "ConstantFertility", "ConstantMortality"
 variants = ["High", "InstantReplacement", "Low", "Medium", "Momentum", "NoChange", "ZeroMigration"]
 contriesOfInterest = ["China", "United States of America", "Indonesia", "Brazil", "Pakistan",
-                      "Bangladesh", "Russian Federation", "Mexico", "Japan", "Ethiopia", "Nigeria", "India"]
+                      "Bangladesh", "Russian Federation", "Mexico", "Japan", "Ethiopia", "Nigeria", "India", "World"]
 
 group = "Total"
 for country in contriesOfInterest:
